@@ -20,7 +20,7 @@ export default function AirdropForm() {
     const config = useConfig()
     const account = useAccount()
     const total: number = useMemo(() => calculateTotal(amounts), [amounts])
-    const { data: hash, isPending, writeContractAsync } = useWriteContract()
+    const { data: hash, writeContractAsync } = useWriteContract()
     const isValidAddress = /^0x[0-9a-fA-F]{40}$/.test(tokenAddress.trim())
     const { data: tokenData } = useReadContracts({
         contracts: [

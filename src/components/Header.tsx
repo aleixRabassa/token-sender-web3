@@ -16,7 +16,7 @@ export default function Header() {
         >
           <FaGithub />
         </a>
-        <h1 className="text-2xl font-bold">tsender</h1>
+        <h1 className="text-2xl font-bold">Token Sender</h1>
       </div>
       <div>
         <ConnectButton />
