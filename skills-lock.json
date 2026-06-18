@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "skills": {
+    "blockchain-developer": {
+      "source": "sickn33/antigravity-awesome-skills",
+      "sourceType": "github",
+      "computedHash": "1d587be3d7f1c784e018c140132e8a9d0e1545373cd204cac06f5698d51f1c6d"
+    },
+    "e2e-testing-patterns": {
+      "source": "wshobson/agents",
+      "sourceType": "github",
+      "computedHash": "37ea37e42a81c926ebd81924691a15fb657df7c8a52b863c34967e5ab99cdc22"
+    }
+  }
+}
