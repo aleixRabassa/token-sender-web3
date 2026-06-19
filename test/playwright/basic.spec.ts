@@ -1,8 +1,9 @@
 import basicSetup from '../wallet-setup/basic.setup'
 import { testWithSynpress } from '@synthetixio/synpress'
-import { MetaMask, ethereumWalletMockFixtures } from '@synthetixio/synpress/playwright'
+import { MetaMask, ethereumWalletMockFixtures, metaMaskFixtures } from '@synthetixio/synpress/playwright'
+import { mergeTests } from '@playwright/test'
 
-const test = testWithSynpress(ethereumWalletMockFixtures)
+const test = testWithSynpress(mergeTests(ethereumWalletMockFixtures, metaMaskFixtures(basicSetup)))
 const { expect } = test
 
 test('has title', async ({ page }) => {
