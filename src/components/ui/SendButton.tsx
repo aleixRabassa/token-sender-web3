@@ -1,14 +1,15 @@
 interface SendButtonProps {
     isLoading: boolean
+    disabled?: boolean
     onClick: () => void
 }
 
-export default function SendButton({ isLoading, onClick }: SendButtonProps) {
+export default function SendButton({ isLoading, disabled = false, onClick }: SendButtonProps) {
     return (
         <div className="flex justify-center mt-2">
             <button
                 onClick={onClick}
-                disabled={isLoading}
+                disabled={isLoading || disabled}
                 className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-70 disabled:cursor-not-allowed flex items-center gap-2"
             >
                 {isLoading && (

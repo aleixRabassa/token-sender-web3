@@ -1,6 +1,6 @@
 interface TxDetailsProps {
     tokenName: string | undefined
-    total: number
+    total: bigint
     amountInTokens: string | null
 }
 
@@ -13,8 +13,8 @@ export default function TxDetails({ tokenName, total, amountInTokens }: TxDetail
                 <span className="font-medium">{tokenName ?? "—"}</span>
             </div>
             <div className="flex justify-between">
-                <span className="text-gray-500 dark:text-gray-400">Amount (wei)</span>
-                <span className="font-medium font-mono">{total > 0 ? total.toString() : "—"}</span>
+                <span className="text-gray-500 dark:text-gray-400">Amount (base units)</span>
+                <span className="font-medium font-mono">{total > BigInt(0) ? total.toString() : "—"}</span>
             </div>
             <div className="flex justify-between">
                 <span className="text-gray-500 dark:text-gray-400">Amount (tokens)</span>

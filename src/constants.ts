@@ -698,3 +698,69 @@ export const tsenderAbi = [
         stateMutability: "pure",
     },
 ]
+
+// Aave v3 Sepolia test USDC — shared by the faucet and the Sepolia default test values so they cannot drift.
+// (Circle's Sepolia USDC is a different contract and cannot be minted by this faucet.)
+const AAVE_SEPOLIA_USDC = "0x94a9D9AC8a22534E3FaCa9F4e7F2E2cf85d5E4C8"
+
+interface FaucetConfig {
+    [chainId: number]: {
+        faucet: `0x${string}`
+        token: `0x${string}`
+        decimals: number
+        label: string
+        // Whole tokens minted per click; the Aave faucet caps a single mint at MAX_MINT_AMOUNT (10000 whole tokens).
+        mintAmount: number
+    }
+}
+
+export const chainsToFaucet: FaucetConfig = {
+    11155111: {
+        faucet: "0xC959483DBa39aa9E78757139af0e9a2EDEb3f42D",
+        token: AAVE_SEPOLIA_USDC,
+        decimals: 6,
+        label: "USDC",
+        mintAmount: 1000,
+    },
+}
+
+export const aaveFaucetAbi = [
+    {
+        inputs: [
+            { internalType: "address", name: "token", type: "address" },
+            { internalType: "address", name: "to", type: "address" },
+            { internalType: "uint256", name: "amount", type: "uint256" },
+        ],
+        name: "mint",
+        outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+        stateMutability: "nonpayable",
+        type: "function",
+    },
+    {
+        inputs: [],
+        name: "isPermissioned",
+        outputs: [{ internalType: "bool", name: "", type: "bool" }],
+        stateMutability: "view",
+        type: "function",
+    },
+] as const
+
+export interface AirdropFields {
+    tokenAddress: string
+    recipients: string
+    amounts: string
+}
+
+// Default form values per chain, in the exact text format the inputs use (amounts in base units).
+export const defaultTestValues: { [chainId: number]: AirdropFields } = {
+    11155111: {
+        tokenAddress: AAVE_SEPOLIA_USDC,
+        recipients: "0x70997970C51812dc3A010C7d01b50e0d17dc79C8\n0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC",
+        amounts: "1000000\n2000000",
+    },
+    31337: {
+        tokenAddress: "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512",
+        recipients: "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
+        amounts: "1000000000000000000",
+    },
+}
